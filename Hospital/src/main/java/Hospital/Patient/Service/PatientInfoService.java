@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 
 import Hospital.Patient.DTO.PatientInfoCreateDTO;
+import Hospital.Patient.DTO.PatientInfoEditDTO;
+import Hospital.Patient.DTO.PatientInfoEditResponseDTO;
 import Hospital.Patient.DTO.PatientInfoReadDTO;
 import Hospital.Patient.Entity.Patient;
 import Hospital.Patient.Entity.PatientInfoRepository;
@@ -12,11 +14,13 @@ import Hospital.Patient.Entity.PatientInfoRepository;
 
 @Service
 public class PatientInfoService {
+	   
 	   private PatientInfoRepository pir;
 	   
 	   public PatientInfoService(PatientInfoRepository pir) {
 	      this.pir = pir;
 	   }
+	   
 	   public Integer PatientInfoInsert(PatientInfoCreateDTO picDTO) {
 		      Patient patient_data = Patient.builder()
 		                        .Name(picDTO.getName())
@@ -37,10 +41,21 @@ public class PatientInfoService {
 		      this.pir.save(patient_data);
 		      return patient_data.getPatientId();
 		   }
+	   
 	   public PatientInfoReadDTO PatientInfoRead(Integer PatientId) throws NoSuchElementException{
 		      Patient p = this.pir.findById(PatientId).orElseThrow();
 		      return PatientInfoReadDTO.PatientInfoFactory(p);
 		   }
-
+	   
+	   public PatientInfoEditResponseDTO PatientInfoEdit(Integer PatientId) throws NoSuchElementException{
+		   	Patient p = this.pir.findById(PatientId).orElseThrow();
+		   	return PatientInfoEditResponseDTO.PatientFactory(p);
+	   }
+	   
+	   public void PatientInfoUpdate(PatientInfoEditDTO pieDTO) throws NoSuchElementException{
+		   Patient p = this.pir.findById(pieDTO.getPatientId()).orElseThrow();
+		   p = pieDTO.fill(p);
+		   this.pir.save(p);
+	   }
 
 }

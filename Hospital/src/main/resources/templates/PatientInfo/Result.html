@@ -60,5 +60,8 @@
    <span th:text="${#temporals.format(PatientData.InsertDateTime, 'yyyy년 MM월 dd일 HH시 mm분 ss초')}"></span>
    <br>
    
+   <a th:href="@{/PatientInfo/Edit/{id}(id=${PatientData.PatientId})}" th:text="수정"></a>
+   <a th:href="@{/Home}" th:text="홈으로"></a>
+   <!-- input type="button" 은 th:href를 지원하지않으므로 a태그 사용후 스타일 변경을 통해 버튼 생성해야함 -->
 </body>
 </html>
