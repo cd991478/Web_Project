@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import Hospital.Login.DTO.UserInfoCreateDTO;
 import Hospital.Login.Service.UserLoginService;
@@ -35,14 +36,14 @@ public class UserLoginController {
 	public String Login(@RequestParam("UserId") String UserId,
 						@RequestParam("UserPw") String UserPw,
 						HttpSession session, Model model) {
-		boolean LoginSuccess = this.uls.UserLogin(UserId,UserPw);
+		String Result = this.uls.UserLogin(UserId,UserPw);
 		
-		if(LoginSuccess) {
+		if(Result.equals("Success")){
 			session.setAttribute("UserId", UserId);
 			return "redirect:/Home";
 		}
 		else {
-			model.addAttribute("errorMessage", "아이디 또는 비밀번호가 틀렸습니다.");
+			model.addAttribute("ErrorMessage", "아이디 또는 비밀번호가 틀렸습니다.");
 			return "/Login";
 		}
 	}
@@ -55,10 +56,15 @@ public class UserLoginController {
 	}
 	
 	@PostMapping("/SignUp") // 회원가입 화면에서, 입력 후 회원가입 완료 누르면 실행 후 이동
-	public String SignUp(UserInfoCreateDTO uicDTO) {
+	public String SignUp(UserInfoCreateDTO uicDTO, Model model) {
+		if(this.uls.UserIdCheck(uicDTO.getUserId())) {
+			model.addAttribute("Error","사용할 수 없는 아이디입니다.");
+			return "/SignUp";
+		}
 		this.uls.UserInfoRegister(uicDTO);
 		return "/SignUpComplete";
 	}
+	
 	
 	@GetMapping("/Logout") // 로그아웃
 	public String Logout(HttpSession session) {
@@ -66,11 +72,17 @@ public class UserLoginController {
 		return "redirect:/Home";
 	}
 	
-	@GetMapping("/UserInfo") // 회원정보 수정 기능, 추후 작업
-	public String UserInfo() {
-		return "/UserInfo";
+	@GetMapping("/UserInfoModify") // 회원정보 수정 기능, 추후 작업
+	public ModelAndView GotoUserInfoModify(String UserId) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
 	}
 	
+	@PostMapping("/UserInfoModify")
+	public String UserInfoModify(UserInfoCreateDTO uicDTO) {
+		this.uls.UserInfoModify(uicDTO);
+		return "/Home";
+	}
 	
 	
 }

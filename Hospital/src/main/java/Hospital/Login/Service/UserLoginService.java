@@ -1,32 +1,33 @@
 package Hospital.Login.Service;
 
-import java.util.NoSuchElementException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Hospital.Login.DTO.UserInfoCreateDTO;
+import Hospital.Login.Entity.UserInfo;
 import Hospital.Login.Entity.UserInfoRepository;
-import Hospital.Login.Entity.Userinfo;
-
 
 @Service
 public class UserLoginService {
+	
 	@Autowired
 	private UserInfoRepository uir;
 	
 	//로그인 실행 로직
-	public boolean UserLogin(String UserId, String UserPw) throws NoSuchElementException{
-		Userinfo u = this.uir.findById(UserId).orElseThrow();
-		if(u != null && u.getUserPw().equals(UserPw)) {
-			return true;
+	public String UserLogin(String UserId, String UserPw){
+		UserInfo userinfo = this.uir.findById(UserId).orElse(null);
+		if(userinfo==null) {
+			return "IdError";
 		}
-		return false;
+		else if(!userinfo.getUserPw().equals(UserPw)) {
+			return "PwError";
+		}
+		return "Success";
 	}
 	
 	//회원 가입 로직 (재출시 DB에 등록)
 	public void UserInfoRegister(UserInfoCreateDTO uicDTO) {
-		Userinfo u = Userinfo.builder()
+		UserInfo userinfo = UserInfo.builder()
 					.UserId(uicDTO.getUserId())
 					.UserPw(uicDTO.getUserPw())
 					.UserName(uicDTO.getUserName())
@@ -36,9 +37,25 @@ public class UserLoginService {
 					.UserAddress1(uicDTO.getUserAddress1())
 					.UserAddress2(uicDTO.getUserAddress2())
 					.build();
-		this.uir.save(u); // 회원 정보 저장
+		this.uir.save(userinfo); // 회원 정보 저장
 	}
 	
+	//회원 가입 아이디 중복 확인 버튼 로직
+	public boolean UserIdCheck(String UserId) {
+		return this.uir.existsById(UserId);
+	}
 	
+	public void UserInfoModify(UserInfoCreateDTO uicDTO) {
+		UserInfo userinfo = UserInfo.builder()
+				.UserPw(uicDTO.getUserPw())
+				.UserName(uicDTO.getUserName())
+				.UserRegNum(uicDTO.getUserRegNum())
+				.UserGender(uicDTO.getUserGender())
+				.UserPhone(uicDTO.getUserPhone())
+				.UserAddress1(uicDTO.getUserAddress1())
+				.UserAddress2(uicDTO.getUserAddress2())
+				.build();
+		this.uir.save(userinfo);
+	}
 	
 }

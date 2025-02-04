@@ -22,40 +22,40 @@ public class PatientInfoService {
 	   }
 	   
 	   public Integer PatientInfoInsert(PatientInfoCreateDTO picDTO) {
-		      Patient patient_data = Patient.builder()
-		                        .Name(picDTO.getName())
-		                        .Gender(picDTO.getGender())
-		                        .Age(picDTO.getAge())
-		                        .Phone_Number(picDTO.getPhone_Number())
-		                        .Address_1(picDTO.getAddress_1())
-		                        .Address_2(picDTO.getAddress_2())
-		                        .Taking_Pill(picDTO.getTaking_Pill())
-		                        .Nose(picDTO.getNose())
-		                        .Cough(picDTO.getCough())
-		                        .Pain(picDTO.getPain())
-		                        .Diarrhea(picDTO.getDiarrhea())
-		                        .High_Risk_Group(picDTO.getHigh_Risk_Group())
-		                        .VAS(picDTO.getVAS())
-		                        .Agreement(picDTO.getAgreement())
+		      Patient patient = Patient.builder()
+		                        .P_Name(picDTO.getP_Name())
+		                        .P_Gender(picDTO.getP_Gender())
+		                        .P_Age(picDTO.getP_Age())
+		                        .P_PhoneNumber(picDTO.getP_PhoneNumber())
+		                        .P_Address1(picDTO.getP_Address1())
+		                        .P_Address2(picDTO.getP_Address2())
+		                        .P_TakingPill(picDTO.getP_TakingPill())
+		                        .P_Nose(picDTO.getP_Nose())
+		                        .P_Cough(picDTO.getP_Cough())
+		                        .P_Pain(picDTO.getP_Pain())
+		                        .P_Diarrhea(picDTO.getP_Diarrhea())
+		                        .P_HighRiskGroup(picDTO.getP_HighRiskGroup())
+		                        .P_VAS(picDTO.getP_VAS())
+		                        .P_Agreement(picDTO.getP_Agreement())
 		                        .build();
-		      this.pir.save(patient_data);
-		      return patient_data.getPatientId();
+		      this.pir.save(patient);
+		      return patient.getP_Id();
 		   }
 	   
-	   public PatientInfoReadDTO PatientInfoRead(Integer PatientId) throws NoSuchElementException{
-		      Patient p = this.pir.findById(PatientId).orElseThrow();
-		      return PatientInfoReadDTO.PatientInfoFactory(p);
+	   public PatientInfoReadDTO PatientInfoRead(Integer P_Id) throws NoSuchElementException{
+		      Patient patient = this.pir.findById(P_Id).orElseThrow();
+		      return PatientInfoReadDTO.PatientInfoFactory(patient);
 		   }
 	   
-	   public PatientInfoEditResponseDTO PatientInfoEdit(Integer PatientId) throws NoSuchElementException{
-		   	Patient p = this.pir.findById(PatientId).orElseThrow();
-		   	return PatientInfoEditResponseDTO.PatientFactory(p);
+	   public PatientInfoEditResponseDTO PatientInfoEdit(Integer P_Id) throws NoSuchElementException{
+		   	Patient patient = this.pir.findById(P_Id).orElseThrow();
+		   	return PatientInfoEditResponseDTO.PatientFactory(patient);
 	   }
 	   
 	   public void PatientInfoUpdate(PatientInfoEditDTO pieDTO) throws NoSuchElementException{
-		   Patient p = this.pir.findById(pieDTO.getPatientId()).orElseThrow();
-		   p = pieDTO.fill(p);
-		   this.pir.save(p);
+		   Patient patient = this.pir.findById(pieDTO.getP_Id()).orElseThrow();
+		   patient = pieDTO.Fill(patient);
+		   this.pir.save(patient);
 	   }
 
 }

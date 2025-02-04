@@ -12,55 +12,55 @@ import lombok.Setter;
 public class PatientInfoEditDTO {
 	
 	@NonNull
-	private Integer PatientId;
+	private Integer P_Id;
 	
 	@NonNull
 	@NotBlank
-	private String Name;
+	private String P_Name;
 	@NonNull
-	private String Gender;
+	private String P_Gender;
 	@NotNull
 	
-	private Integer Age;
+	private Integer P_Age;
 	@NonNull
 	@NotBlank
-	private String Phone_Number;
+	private String P_PhoneNumber;
 	@NonNull
 	@NotBlank
-	private String Address_1;
+	private String P_Address1;
 	@NonNull
 	@NotBlank
-	private String Address_2;
+	private String P_Address2;
 	@NonNull
-	private Integer Taking_Pill;
+	private Integer P_TakingPill;
 	@NonNull
-	private Integer Nose;
+	private Integer P_Nose;
 	@NonNull
-	private Integer Cough;
+	private Integer P_Cough;
 	@NonNull
-	private Integer Pain;
+	private Integer P_Pain;
 	@NonNull
-	private Integer Diarrhea;
+	private Integer P_Diarrhea;
 	@NonNull
-	private String High_Risk_Group;
+	private String P_HighRiskGroup;
 	@NonNull
-	private Integer VAS;
+	private Integer P_VAS;
 	// AgreeMent
 	
-	public Patient fill(Patient p) {
-		p.setName(this.Name);
-		p.setGender(this.Gender);
-		p.setAge(this.Age);
-		p.setPhone_Number(this.Phone_Number);
-		p.setAddress_1(this.Address_1);
-		p.setAddress_2(this.Address_2);
-		p.setTaking_Pill(this.Taking_Pill);
-		p.setNose(this.Nose);
-		p.setCough(this.Cough);
-		p.setPain(this.Pain);
-		p.setDiarrhea(this.Diarrhea);
-		p.setHigh_Risk_Group(this.High_Risk_Group);
-		p.setVAS(this.VAS);
+	public Patient Fill(Patient p) {
+		p.setP_Name(this.P_Name);
+		p.setP_Gender(this.P_Gender);
+		p.setP_Age(this.P_Age);
+		p.setP_PhoneNumber(this.P_PhoneNumber);
+		p.setP_Address1(this.P_Address1);
+		p.setP_Address2(this.P_Address2);
+		p.setP_TakingPill(this.P_TakingPill);
+		p.setP_Nose(this.P_Nose);
+		p.setP_Cough(this.P_Cough);
+		p.setP_Pain(this.P_Pain);
+		p.setP_Diarrhea(this.P_Diarrhea);
+		p.setP_HighRiskGroup(this.P_HighRiskGroup);
+		p.setP_VAS(this.P_VAS);
 		return p;
 	}
 	

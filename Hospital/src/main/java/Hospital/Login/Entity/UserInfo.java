@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Userinfo {
+public class UserInfo {
 	@Id
 	private String UserId;
 	@Column

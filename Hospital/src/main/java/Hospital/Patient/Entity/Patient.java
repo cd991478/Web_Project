@@ -22,37 +22,37 @@ import lombok.NoArgsConstructor;
 public class Patient {
 	   @Id
 	   @GeneratedValue(strategy = GenerationType.IDENTITY)
-	   private Integer PatientId;
+	   private Integer P_Id;
 	   @Column
-	   private String Name;
+	   private String P_Name;
 	   @Column   
-	   private String Gender;
+	   private String P_Gender;
 	   @Column
-	   private Integer Age;
+	   private Integer P_Age;
 	   @Column
-	   private String Phone_Number;
+	   private String P_PhoneNumber;
 	   @Column
-	   private String Address_1;
+	   private String P_Address1;
 	   @Column
-	   private String Address_2;
+	   private String P_Address2;
 	   @Column
-	   private Integer Taking_Pill;
+	   private Integer P_TakingPill;
 	   @Column
-	   private Integer Nose;
+	   private Integer P_Nose;
 	   @Column
-	   private Integer Cough;
+	   private Integer P_Cough;
 	   @Column
-	   private Integer Pain;
+	   private Integer P_Pain;
 	   @Column
-	   private Integer Diarrhea;
+	   private Integer P_Diarrhea;
 	   @Column
-	   private String High_Risk_Group;
+	   private String P_HighRiskGroup;
 	   @Column
-	   private Integer VAS;
+	   private Integer P_VAS;
 	   @Column
-	   private Integer Agreement;
+	   private Integer P_Agreement;
 	      
 	   @CreationTimestamp
-	   private LocalDateTime InsertDateTime;   
+	   private LocalDateTime P_InsertDateTime;   
 
 }

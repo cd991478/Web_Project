@@ -2,7 +2,7 @@ package Hospital.Login.DTO;
 
 import java.time.LocalDateTime;
 
-import Hospital.Login.Entity.Userinfo;
+import Hospital.Login.Entity.UserInfo;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +30,7 @@ public class UserInfoDTO {
 	
 	private LocalDateTime InsertDateTime;
 	
-	public UserInfoDTO fromUserInfo(Userinfo u) {
+	public UserInfoDTO FromUserInfo(UserInfo u) {
 		this.UserId = u.getUserId();
 		this.UserPw = u.getUserPw();
 		this.UserName = u.getUserName();
@@ -43,9 +43,9 @@ public class UserInfoDTO {
 		return this;
 	}
 	
-	public static UserInfoDTO UserInfoFactory(Userinfo u) {
+	public static UserInfoDTO UserInfoFactory(UserInfo u) {
 		UserInfoDTO uiDTO = new UserInfoDTO();
-		uiDTO.fromUserInfo(u);
+		uiDTO.FromUserInfo(u);
 		return uiDTO;
 	}
 }

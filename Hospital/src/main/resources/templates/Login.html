@@ -16,7 +16,7 @@
 		<br>
 		<input type="submit" value="로그인">
 	</form>
-	<p th:if="${errorMessage != null}" style="color:red;" th:text="${errorMessage}"></p>
+	<span th:if="${ErrorMessage != null}" style="color:red;" th:text="${ErrorMessage}"></span>
 	<br>
 	<a th:href="@{/SignUp}" th:text="회원가입"></a>
 </body>

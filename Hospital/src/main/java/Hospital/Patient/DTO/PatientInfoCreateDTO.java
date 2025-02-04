@@ -19,31 +19,31 @@ public class PatientInfoCreateDTO {
 	//본 페이지에서는 toString과 hashcode 등의 메소드를 사용하지 않으므로
 	//간단하게 @Getter와 @Setter만을 사용하기로 한다.
 	   @NonNull
-	   private String Name;
+	   private String P_Name;
 	   @NonNull
-	   private String Gender;
+	   private String P_Gender;
 	   @NonNull
-	   private Integer Age;
+	   private Integer P_Age;
 	   @NonNull
-	   private String Phone_Number;
+	   private String P_PhoneNumber;
 	   @NonNull
-	   private String Address_1;
+	   private String P_Address1;
 	   @NonNull
-	   private String Address_2;
+	   private String P_Address2;
 	   @NonNull
-	   private Integer Taking_Pill;
+	   private Integer P_TakingPill;
 	   @NonNull
-	   private Integer Nose;
+	   private Integer P_Nose;
 	   @NonNull
-	   private Integer Cough;
+	   private Integer P_Cough;
 	   @NonNull
-	   private Integer Pain;
+	   private Integer P_Pain;
 	   @NonNull
-	   private Integer Diarrhea;
+	   private Integer P_Diarrhea;
 	   @NonNull
-	   private String High_Risk_Group;
+	   private String P_HighRiskGroup;
 	   @NonNull
-	   private Integer VAS;
+	   private Integer P_VAS;
 	   @NonNull
-	   private Integer Agreement;
+	   private Integer P_Agreement;
 }

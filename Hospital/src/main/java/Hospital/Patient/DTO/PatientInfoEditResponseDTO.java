@@ -9,46 +9,46 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class PatientInfoEditResponseDTO {
-	private Integer PatientId;
-	private String Name;
-	private String Gender;
-	private Integer Age;
-	private String Phone_Number;
-	private String Address_1;
-	private String Address_2;
-	private Integer Taking_Pill;
-	private Integer Nose;
-	private Integer Cough;
-	private Integer Pain;
-	private Integer Diarrhea;
-	private String High_Risk_Group;
-	private Integer VAS;
-	private Integer Agreement;
-	private LocalDateTime InsertDateTime;
+	private Integer P_Id;
+	private String P_Name;
+	private String P_Gender;
+	private Integer P_Age;
+	private String P_PhoneNumber;
+	private String P_Address1;
+	private String P_Address2;
+	private Integer P_TakingPill;
+	private Integer P_Nose;
+	private Integer P_Cough;
+	private Integer P_Pain;
+	private Integer P_Diarrhea;
+	private String P_HighRiskGroup;
+	private Integer P_VAS;
+	private Integer P_Agreement;
+	private LocalDateTime P_InsertDateTime;
 	
-	public PatientInfoEditResponseDTO fromPatient(Patient p) {
-		  this.PatientId = p.getPatientId();
-	      this.Name = p.getName();
-	      this.Gender = p.getGender();
-	      this.Age = p.getAge();
-	      this.Phone_Number = p.getPhone_Number();
-	      this.Address_1 = p.getAddress_1();
-	      this.Address_2 = p.getAddress_2();
-	      this.Taking_Pill = p.getTaking_Pill();
-	      this.Nose = p.getNose();
-	      this.Cough = p.getCough();
-	      this.Pain = p.getPain();
-	      this.Diarrhea = p.getDiarrhea();
-	      this.High_Risk_Group = p.getHigh_Risk_Group();
-	      this.VAS = p.getVAS();
-	      this.Agreement = p.getAgreement();
-	      this.InsertDateTime = p.getInsertDateTime();
+	public PatientInfoEditResponseDTO FromPatient(Patient p) {
+		  this.P_Id = p.getP_Id();
+	      this.P_Name = p.getP_Name();
+	      this.P_Gender = p.getP_Gender();
+	      this.P_Age = p.getP_Age();
+	      this.P_PhoneNumber = p.getP_PhoneNumber();
+	      this.P_Address1 = p.getP_Address1();
+	      this.P_Address2 = p.getP_Address2();
+	      this.P_TakingPill = p.getP_TakingPill();
+	      this.P_Nose = p.getP_Nose();
+	      this.P_Cough = p.getP_Cough();
+	      this.P_Pain = p.getP_Pain();
+	      this.P_Diarrhea = p.getP_Diarrhea();
+	      this.P_HighRiskGroup = p.getP_HighRiskGroup();
+	      this.P_VAS = p.getP_VAS();
+	      this.P_Agreement = p.getP_Agreement();
+	      this.P_InsertDateTime = p.getP_InsertDateTime();
 	      return this;
 	}
 	
 	public static PatientInfoEditResponseDTO PatientFactory(Patient p) {
 		PatientInfoEditResponseDTO pierDTO = new PatientInfoEditResponseDTO();
-		pierDTO.fromPatient(p);
+		pierDTO.FromPatient(p);
 		return pierDTO;
 	}
 }

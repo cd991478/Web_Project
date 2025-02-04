@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>병원 목록</title>
+</head>
+<body>
+    <h1>병원 목록</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>H_Id</th>
+                <th>H_Region</th>
+                <th>H_Name</th>
+                <th>H_Department</th>
+                <th>Bed_Total</th>
+                <th>Bed_General</th>
+                <th>Bed_Psy</th>
+                <th>Bed_Nursing</th>
+                <th>Bed_Intensive</th>
+                <th>Bed_Isolation</th>
+                <th>Bed_Clean</th>
+                <th>H_Phone_Number</th>
+                <th>H_Address</th>
+            </tr>
+        </thead>
+        <tbody>
+         <tr th:each="Hospital : ${D_HospitalList}" >	
+                <td th:text="${Hospital.H_Id}"></td>
+                <td th:text="${Hospital.H_Region}"></td>
+                <td th:text="${Hospital.H_Name}"></td>
+                <td th:text="${Hospital.H_Department}"></td>
+                <td th:text="${Hospital.Bed_Total}"></td>
+                <td th:text="${Hospital.Bed_General}"></td>
+                <td th:text="${Hospital.Bed_Psy}"></td>
+                <td th:text="${Hospital.Bed_Nursing}"></td>
+                <td th:text="${Hospital.Bed_Intensive}"></td>
+                <td th:text="${Hospital.Bed_Isolation}"></td>
+                <td th:text="${Hospital.Bed_Clean}"></td>
+                <td th:text="${Hospital.H_Phone_Number}"></td>
+                <td th:text="${Hospital.H_Address}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
