@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>병원 전체 목록</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    	th,td{
+    		min-width: 90px;
+    	}
+    	.custom-thead{
+    		background-color:#fff3cd;
+    	}
+    	
+    </style>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+    <header th:insert="/BoardPage/Header.html"></header>
+    <div class="container-fluid mt-5">
+        <h1 class="text-center">병원 전체 목록</h1>
+        <div class="text-right">
+      		<a class="btn btn-success mr-2" th:href="@{/AppointmentPage/Input}" style="float:left;">병원 예약</a>
+      		<a class="btn btn-secondary mr-2" onclick="history.back()">뒤로가기</a>
+      		<a class="btn btn-secondary" th:href="@{/Home}">홈으로</a>
+    	</div>
+        <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-striped table-bordered mt-4">
+            <thead class="custom-thead">
+                <tr>
+                    <th style="min-width:60px;">번호</th>
+                    <th style="min-width:75px;">지역</th>
+                    <th>병원이름</th>
+                    <th>종류</th>
+                    <th>총 병상</th>
+                    <th>일반병상</th>
+                    <th style="min-width:110px;" >정신과병상</th>
+                    <th>요양병상</th>
+                    <th style="min-width:130px;" >중환자실병상</th>
+                    <th>격리병상</th>
+                    <th>무균병상</th>
+                    <th>전화</th>
+                    <th>주소</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="Hospital : ${AllHospitalList}">
+                    <td style="min-width:60px;" th:text="${Hospital.H_Id}"></td>
+                    <td style="min-width:75px;" th:text="${Hospital.H_Region}"></td>
+                    <td th:text="${Hospital.H_Name}"></td>
+                    <td th:text="${Hospital.H_Department}"></td>
+                    <td th:text="${Hospital.Bed_Total}"></td>
+                    <td th:text="${Hospital.Bed_General}"></td>
+                    <td style="min-width:110px;" th:text="${Hospital.Bed_Psy}"></td>
+                    <td th:text="${Hospital.Bed_Nursing}"></td>
+                    <td style="min-width:130px;" th:text="${Hospital.Bed_Intensive}"></td>
+                    <td th:text="${Hospital.Bed_Isolation}"></td>
+                    <td th:text="${Hospital.Bed_Clean}"></td>
+                    <td th:text="${Hospital.H_Phone_Number}"></td>
+                    <td th:text="${Hospital.H_Address}"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional for interactive components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

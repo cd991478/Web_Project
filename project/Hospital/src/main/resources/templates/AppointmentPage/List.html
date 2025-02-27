@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>예약 목록</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+    
+    
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<header th:insert="/AppointmentPage/Header.html"></header>
+    <div class="container mt-5" style="max-width:600px;">
+        <h3 class="text-center">예약 목록</h3>
+        <p class="text-center font-weight-bold" th:text="|${UserName}(${UserId})님이 등록하신 예약 목록입니다.|"></p>
+      
+        <div th:if="${AppointmentList != null}" class="alert alert-info text-center">
+            예약 번호를 클릭하면 조회가 가능합니다.
+        </div>
+        <div th:if="${AppointmentList == null}" class="alert alert-danger text-center">
+            등록된 예약이 없습니다.
+        </div>
+
+        <hr>
+
+        <table class="table table-hover text-center">
+            <thead class="thead-light">
+                <tr>
+                    <th>예약번호</th>
+                    <th>등록이름</th>
+                    <th>예약일시</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="AppointmentInfo : ${AppointmentList}">
+                    <td>
+                        <a th:text="'#' + ${AppointmentInfo.Id}" 
+                           th:href="@{/AppointmentPage/Result/{Id}(Id=${AppointmentInfo.Id})}"
+                           class="btn btn-link">
+                        </a>
+                    </td>
+                    <td th:text="${AppointmentInfo.PatientName}"></td>
+                    <td th:text="${#temporals.format(AppointmentInfo.AppointmentTime, 'yyyy년 MM월 dd일 HH시 mm분 ss초')}"></td>
+                </tr>
+            </tbody>
+        </table>
+<hr>
+        <div class="text-right mt-4">
+            <a th:href="@{/AppointmentPage/Input}" class="btn btn-success" style="float:left;">병원예약</a>
+            <a th:href="@{/Home}" class="btn btn-secondary">홈으로</a>
+        </div>
+    </div>
+    
+<br><br>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

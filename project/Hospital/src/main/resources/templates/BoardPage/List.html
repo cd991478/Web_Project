@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <script>
+    	
+    	
+    
+    </script>
+  </head>
+  <body>
+  <div th:replace="fragments/navbar :: navbar"></div>
+    <header th:insert="/BoardPage/Header.html"></header>
+    
+    <div class="container mt-4">
+    	<h3>공지사항</h3>
+    	<hr>
+      <table class="table">
+        <thead class="thead-light">
+          <tr class="text-center">
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center" th:each="board : ${BoardList}">
+            <th scope="row">
+              <span th:text="${board.Id}"></span>
+            </th>
+            <td>
+            <a th:href="@{/BoardPage/Contents/{id}(id=${board.Id})}">
+                <span th:text="${board.Title}"></span>
+              </a>
+            </td>
+            <td>
+              <span th:text="${board.Author}"></span>
+            </td>
+            <td>
+              <span th:text="${#temporals.format(board.CreatedDate, 'yyyy-MM-dd HH:mm')}"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+
+        <div class="mt-3 text-left">
+        	
+          		<a th:if="${UserId == 'admin'}" class="btn btn-primary" th:href="@{/BoardPage/Write}" role="button">글쓰기</a>
+        	
+        	<a class="btn btn-secondary" th:href="@{/Home}" role="button" style="float:right;">홈으로</a>
+        </div>
+   	</div>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
